@@ -21,13 +21,13 @@ class SDNTopo( Topo ):
 	#r1 = net.addHost('r1', cls=LinuxRouter)
 	#or something like that, if you want to make it an actual router
 
-        r1 = self.addSwitch( 'r1' ) #Public Router
+        r1 = self.addSwitch( 'r1' , ip='192.168.1.100' ) #Public Router
 
         r2 = self.addSwitch( 'r2' ) #Campus Router
 
         #switches
 
-        s1 = self.addSwitch ( 's1' )#Sys Admin
+        s1 = self.addSwitch ( 's1' , ip='10.0.0.100' ) #Admin
 
         s2 = self.addSwitch ( 's2' )#Staff Access
 
@@ -37,7 +37,7 @@ class SDNTopo( Topo ):
 
         #hosts
 
-        h1 = self.addHost( 'h1' , ip='192.168.1.1/24' )
+        h1 = self.addHost( 'h1' , ip='192.168.1.1/24' , defaultRoute='192.168.1.100' )
 
         h2 = self.addHost( 'h2' , ip='192.168.1.2/24' )
 
@@ -49,7 +49,7 @@ class SDNTopo( Topo ):
 
 
 
-        i1 = self.addHost( 'i1' , ip='10.0.0.1/24' )
+        i1 = self.addHost( 'i1' , ip='10.0.0.1/24' , defaultRoute='10.0.0.100' )
 
         i2 = self.addHost( 'i2' , ip='10.0.0.2/24' )
 
